@@ -1,4 +1,4 @@
-# ````Git 在 zsh 常用快捷键
+# Git 在 zsh 常用快捷键
 
 | alias                                    | command                                  | desc                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------- |
@@ -16,7 +16,7 @@
 | gpsup                                    | git push —set-upstream origin $(current_branch) | 把当前分支推到远程仓库，第一次推送用     |
 | gl                                       | git pull                                 | 拉取远程仓库                 |
 | gm dev                                   | git merge                                | 合并到当前分支                |
-| gp origin dev                            | git push                                 | 推送分支到远程仓库，平时推送用        |
+| gp origin dev                            | git push                                 | 推送分支 到远程仓库，平时推送用       |
 | gr                                       | git remote                               | 查看远程仓库                 |
 | grv                                      | git remote -v                            |                        |
 | gra origin git@github.com:michaelliao/learngit.git | git remote add                           | 关联远程仓库，必须现在GitHub上建立仓库 |
