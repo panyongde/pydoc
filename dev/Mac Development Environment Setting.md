@@ -292,7 +292,7 @@ http://6f410ddf.m.daocloud.io
 3. 修改权限
 
    ```shell
-   sudo chmod a+x composer
+   sudo chmod a+x /usr/local/bin/composer
    ```
 
 4. 安装国内镜像，再命令行窗口输入：
@@ -334,6 +334,16 @@ http://6f410ddf.m.daocloud.io
    ```
 
    把目录 `lumen` 改为 `project2`
+
+4. 运行 laravel/lumen 如果出现空白，可能需要做下面两件事：
+
+   ```shell
+   chmod -R 777 storage bootstrap/cache
+   ```
+
+   ```Shell
+   composer update
+   ```
 
 ## 设置 laradock 环境变量
 
