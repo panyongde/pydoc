@@ -335,15 +335,6 @@ http://6f410ddf.m.daocloud.io
 
    把目录 `lumen` 改为 `project2`
 
-4. 运行 laravel/lumen 如果出现空白，可能需要做下面两件事：
-
-   ```shell
-   chmod -R 777 storage bootstrap/cache
-   ```
-
-   ```Shell
-   composer update
-   ```
 
 ## 设置 laradock 环境变量
 
@@ -355,13 +346,20 @@ http://6f410ddf.m.daocloud.io
 git clone git@github.com:bagart/laradock_env.git
 ```
 
-
-
 ### 自己设置
 
 1. 设置 `laradock` 目录下的 .env，就是上面从  `env-example` 复制出来的文件。
 
+### 运行 laravel/lumen 如果出现空白，可能需要做下面两件事：
 
+   ```shell
+   chmod -R 777 storage bootstrap/cache
+   ```
+
+   ```Shell
+   composer update
+   ```
+   
 
 # 安装 Node.js
 
