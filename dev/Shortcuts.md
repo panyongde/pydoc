@@ -11,7 +11,8 @@
 | gco dev                                  | git checkout                             | 切换到另一个分支               |
 | gc                                       | git checkout master                      |                        |
 | gcd                                      | git checkout develop                     |                        |
-| gcmsg "first commit"                     | git commit -m                            | 提交到本地仓库                |
+| gcmsg "1st commit"                       | git commit -m                            | 提交到本地仓库                |
+| gcam "2nd commit"                        | git commit -a -m                         | 添加到暂存区和提交到仓库同时进行       |
 | gd                                       | git diff                                 |                        |
 | gpsup                                    | git push —set-upstream origin $(current_branch) | 把当前分支推到远程仓库，第一次推送用     |
 | gl                                       | git pull                                 | 拉取远程仓库                 |

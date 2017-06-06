@@ -359,7 +359,54 @@ git clone git@github.com:bagart/laradock_env.git
    ```Shell
    composer update
    ```
-   
+
+## PHPStom 连接 Docker 进行远程调试的设置
+
+1. 首先设置 `laradock` 里 `.env` 有关 xdebug 的设置。
+
+   在 WORKSPACE 部分中修改：
+
+   ```
+   WORKSPACE_INSTALL_XDEBUG=true
+   ```
+
+   在  PHP_FPM 修改：
+
+   ```
+   PHP_FPM_INSTALL_XDEBUG=true
+   ```
+
+2. Re-build 容器， `docker-compose build workspace php-fpm`
+
+3. 打开 `laradock/workspace/xdebug.ini` and/or `laradock/php-fpm/xdebug.ini` 把下面几项设为 1 :
+
+   ```
+   xdebug.remote_autostart=1
+   xdebug.remote_enable=1
+   xdebug.remote_connect_back=1
+   ```
+
+4. 在 PHPStorm，打开 Preference - Tools 的 `Docker Machine` 选项，看是否可以检测到 `docker-machine`。
+
+5. 在 PHPStorm，打开 Preference - Language & Frameworks - PHP ，设置 `CLI Interpreter`,点击右边的省略号 `...`,设置为远程 Docker 服务。
+
+   ![](https://ws1.sinaimg.cn/large/006tNbRwgy1fgbjkamrkoj30p80l6dhi.jpg)
+
+   如上图，左侧添加一个 Remote PHP，右侧选的 `Server` 选择 `Docker`, `Image name` 选择 `laradock_workspace:latest`，一切正常的话，在下面 `General` 一栏中应该看到 Xdebug 的版本信息。然后点击 `OK`。
+
+6. 这时 `CLI Interpreter` 已经变成了 `Remote PHP`，点击 `Docker container` 右侧的省略号，进入：
+
+   ![](https://ws2.sinaimg.cn/large/006tNbRwgy1fgbkcf2fbkj30ho0hwwfl.jpg)
+
+   把 `volume bindings` 中的 `Container path` 和 `Host path` 分别对应到容器内的项目路径和本机的项目路径。
+
+   在 `Extra host` 中，把数据库的容器名称 `postgres` 对应 本机的 IP 地址，否则调试时有可能找不到数据库。
+
+7. 打开 `PHPUnit` 选项
+
+   ![](https://ws4.sinaimg.cn/large/006tNbRwgy1fgbkkzyq3dj30w10l8whc.jpg)
+
+   添加一个 `Remote Interpreter`，选择刚才设置好的 `Remote PHP`，`PHPUnit library` 选择 `Use Composer autoloader`，下面的 `Path to Script` 填写容器内 `autoload.php` 绝对路径。
 
 # 安装 Node.js
 
