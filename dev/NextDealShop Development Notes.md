@@ -2,7 +2,7 @@
 比如添加carbon组件，可使用下面命令：
 
     ./develop.sh composer require carbon
-    
+
 这种方式添加组件会自动修改 composer.json 文件
 
 # 自动加载文件
@@ -73,36 +73,48 @@ $app->group([
     $app->get('/ideas', 'IdeaController@index');
 }
 ```
-    
+
 # 数据库开发
 ### 创建数据表
 1. 进入应用程序目录
 
         cd /Users/panyongde/Documents/nextdealshop/profiteer
-   
+
 2. 生成表格迁移
-        
+   ​      
         ./develop.sh art make:migration create_ideas_table
-        
+
     然后编写表格的迁移结构
 
 3. 运行迁移
 
         ../develop.sh art migrate
-       
+
 4. 修改表格的迁移结构
 
    先对表格迁移结构的文件进行修改，然后运行：
-   
+
         ./develop.sh art migrate:refresh
-       
+   ​    
 ### 对表格填充数据
 1. 编写填充器
 
         ./develop.sh art make:seeder UserTableSeeder
-       
+
 2. 填充数据
 
         ./develop.sh art db:seed
-       
-       
+
+   ​    
+
+## 使用 Entrust 组件产生的冲突
+
+在 RoleController 中，删除数据方法 destroy 中，使用
+
+```php
+// $this->repository->destroy($id); 会产生错误
+$this->repository->delete($id);
+ return $this->parseReturnData();
+```
+
+可能是和 Entrust 中与 Role 有关的 Trait 产出冲突，在这里只能用 delete()
